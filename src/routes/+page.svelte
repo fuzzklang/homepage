@@ -1,8 +1,19 @@
+<script lang='ts'>
+	import AudioPlayer from './AudioPlayer.svelte';
+	import { tracks } from '../tracks.js';
+</script>
+
 <div class="pageContainer">
 	<div class="main">
 		<h1 class="title">Welcome to my page</h1>
 		<section class="section">
 			<p>It is really nice to see you here</p>
+			<div>
+				<p>Some music:</p>
+				{#each tracks as track}
+					<AudioPlayer {...track} />
+				{/each}
+			</div>
 		</section>
 	</div>
 </div>
