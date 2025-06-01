@@ -1,11 +1,7 @@
-FROM node:alpine as build
+FROM docker://docker.io/library/nginx:1.28.0-alpine-slim as build
 
-ADD . /app
-WORKDIR /app
+EXPOSE 80
 
-RUN npm install
-RUN npm run build
-
-FROM nginx:stable
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=build /app/build /usr/share/nginx/html
+COPY /static /usr/share/nginx/html
+COPY /media/stabilia.mp3 /usr/share/nginx/html/media/stabilia.mp3
